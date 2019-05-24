@@ -1,0 +1,176 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <!-- build:css(.) styles/vendor.css -->
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/bootswatch/dist/materia/bootstrap.min.css" />
+  <link rel="stylesheet" href="bower_components/angular-rangeslider/angular.rangeSlider.css" />
+  <link rel="stylesheet" href="bower_components/components-font-awesome/css/fontawesome-all.min.css" />
+  <link rel="stylesheet" href="bower_components/bootstrap-select/dist/css/bootstrap-select.min.css" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap" rel="stylesheet">
+
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:css(.tmp) styles/main.css -->
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- endbuild -->
+</head>
+
+<body ng-app="eshopApp" ng-controller="LoginController">
+  <!--[if lte IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+  <!-- Add your site or application content here -->
+  <div class="header">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" ui-sref="home">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03"
+          aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor03">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" ui-sref="home" ui-sref-active="active">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" ui-sref="about" ui-sref-active="active">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" ui-sref="products" ui-sref-active="active">Products</a>
+            </li>
+            <div class="dropdown mr-2 currenc">
+              <select class="selectpicker show-menu-arrow" data-width="100px" ng-change="changed()" ng-model="selectedOption" class="form-control">
+                  <option ng-repeat="x in options" value="{{x.currency}}">{{x.currency}}</option>
+              </select>
+            </div>
+          </ul>
+          <div ng-controller="searchController">
+
+            <form ng-submit="click(search);">
+              <input class="form-control search" type="text" ng-focus="focus()" ng-blur="blur()" ng-model="search"
+                list="names" placeholder="Search products...">
+              <datalist ng-click="click()" ng-show="show||mouseover" ng-mouseover="mouseover=true"
+                ng-mouseleave="mouseover=false" id="names" class="form-control pretraga" ng-model="name">
+                <div ng-repeat="option in products | filter:search | limitTo:3" value="{{option.name}}">
+                  <a class="productSearchName" ui-sref="product({id:option.id})">
+                    <h5>{{option.name}}</h5>
+                    <div class="search-img" style="background:url('{{option.imageurl}}')">
+                  </a>
+                </div>
+              </datalist>
+            </form>
+          </div>
+        </div>
+        <a ui-sref="summary"><ngcart-summary template-url="views/summary.html"></ngcart-summary></a>
+
+        <li class="nav-item" ng-hide="loggedIn">
+          <a class="nav-link btn btn-primary" ui-sref="login" ui-sref-active="active">Login <i
+              class="fas fa-sign-in-alt"></i></a>
+        </li>
+        <ul ng-show="loggedIn" class="nav nav-pills d-sm-none d-sm-block">
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="" role="button" aria-haspopup="true"
+              aria-expanded="false"><i class="far fa-user"></i></a>
+            <div class="dropdown-menu"> <a class="dropdown-item" ng-if="userUID === adminUID"
+                ui-sref="addproduct">Add product</a>
+              <a class="dropdown-item" ng-if="userUID === adminUID" href="#">Categories</a>
+              <a class="dropdown-item" ui-sref="products">Products</a>
+              <a class="dropdown-item" ui-sref="orders">Orders</a>
+              <div class="dropdown-divider m-0"></div>
+              <a href="" class="dropdown-item btn-danger logout text-white" ng-click="signOut()">Log out <i
+                  class="fas fa-sign-out-alt"></i></a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <ui-view></ui-view>
+
+  <div class="footer mt-5">
+    <div class="container">
+      <p class="text-center">Ecommerce shop | Tarik Dedić</p>
+    </div>
+  </div>
+
+
+  <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+  <script>
+    !function (A, n, g, u, l, a, r) {
+      A.GoogleAnalyticsObject = l, A[l] = A[l] || function () {
+        (A[l].q = A[l].q || []).push(arguments)
+      }, A[l].l = +new Date, a = n.createElement(g),
+        r = n.getElementsByTagName(g)[0], a.src = u, r.parentNode.insertBefore(a, r)
+    }(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-XXXXX-X');
+    ga('send', 'pageview');
+  </script>
+
+  <!-- build:js(.) scripts/vendor.js -->
+  <!-- bower:js -->
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-i18n/angular-locale_de-de.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/angular-aria/angular-aria.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+  <script src="bower_components/angular-messages/angular-messages.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+  <script src="bower_components/angular-touch/angular-touch.js"></script>
+  <script src="bower_components/firebase/firebase.js"></script>
+  <script src="bower_components/angularfire/dist/angularfire.js"></script>
+  <script src="bower_components/angularUtils-pagination/dirPagination.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+  <script src="bower_components/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+  <script src="bower_components/ngCart/dist/ngCart.min.js"></script>
+  
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:js({.tmp,app}) scripts/scripts.js -->
+  <script src="scripts/app.js"></script>
+  <script src="scripts/controllers/about.js"></script>
+  <script src="scripts/controllers/products.js"></script>
+  <script src="scripts/controllers/product.js"></script>
+  <script src="scripts/controllers/login.js"></script>
+  <script src="scripts/controllers/register.js"></script>
+  <script src="scripts/controllers/addProduct.js"></script>
+  <script src="scripts/controllers/editProduct.js"></script>
+  <script src="scripts/controllers/currency.js"></script>
+
+
+  <!-- endbuild -->
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyB14yJcAbsK7orY-3PIo9DViRZccf6jbCc",
+      authDomain: "shop-7065d.firebaseapp.com",
+      databaseURL: "https://shop-7065d.firebaseio.com",
+      projectId: "shop-7065d",
+      storageBucket: "shop-7065d.appspot.com",
+      messagingSenderId: "188708438008"
+    };
+    firebase.initializeApp(config);
+  </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<div class="col-md-6 offset-md-3 mt-3">
+    <h3 class="text-center">Login page</h3>
+    <div ng-show="error" class="alert alert-danger" ng-show="message">{{error}}</div>
+    <div ng-if="loggedIn" class="alert alert-success" ng-show="message">{{message}}</div>
+    <form name="myForm" ng-hide="loggedIn" novalidate ng-submit="login()">
+        <div class="form-group">
+            <input ng-model="user.email" type="email" class="form-control" id="exampleInputEmail1"
+                aria-describedby="emailHelp" placeholder="Enter email" ng-required="true">
+        </div>
+
+        <div class="form-group">
+            <input type="password" class="form-control" ng-model="user.password" id="exampleInputPassword1"
+                placeholder="Password" ng-required="true">
+        </div>
+        <button type="submit" class="btn btn-primary" ng-disabled="myForm.$invalid">Login</button><br><br>
+        No account?Please register <br><a ui-sref="register" class="btn btn-success">Register</a>
+    </form>
+
+      
+
+        <div ng-show="firebaseUser">
+            <p ng-if="loggedIn">Hello, {{ firebaseUser.user.email}}</p>
+            <button ng-if="loggedIn" class="alert alert-danger" ng-click="signOut()">Sign Out</button>
+          </div>
+</div>
