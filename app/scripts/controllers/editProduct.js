@@ -8,7 +8,7 @@
  * Controller of the eshopApp
  */
 angular.module('eshopApp')
-.controller('EditProduct', ['$scope', '$firebaseAuth', '$location', '$firebaseArray', '$firebase', '$stateParams', '$firebaseObject', '$state', function ($scope, $firebaseAuth, $location, $firebaseArray, $firebase, $stateParams, $firebaseObject, $state) {
+.controller('EditProduct', ['$scope', '$firebaseAuth', '$location', '$firebaseArray', '$firebase', '$stateParams', '$firebaseObject', '$state','$timeout', function ($scope, $firebaseAuth, $location, $firebaseArray, $firebase, $stateParams, $firebaseObject, $state,$timeout) {
     if ($scope.admin) {
         var id = parseInt($stateParams.id);
         var ref = firebase.database().ref('products');
@@ -16,7 +16,12 @@ angular.module('eshopApp')
             $scope.product = snapshot.val();
 
             $scope.editProduct = function (id) {
+                $scope.msg3 = "Product successfully updated.";
 
+                $timeout(function() {
+                    $scope.msg3 = false;
+                 }, 3000);
+                $scope.msg3 = "Product successfully updated.";
                 snapshot.ref.update({
                     name: $scope.product.name,
                     ram: $scope.product.ram,
@@ -25,7 +30,6 @@ angular.module('eshopApp')
                 })
                     .then(
                         function (ref) {
-                            $scope.msg3 = "Product successfully updated.";
                            
                         }
                         , function (error) {

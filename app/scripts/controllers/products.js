@@ -8,7 +8,7 @@
  * Controller of the eshopApp
  */
 angular.module('eshopApp')
-    .controller('searchController', function ($scope, $firebaseArray, firebase) {
+    .controller('searchController', function ($scope, $firebaseArray, firebase,$timeout) {
 
         const ref = firebase.database().ref('products');
         $scope.products = $firebaseArray(ref);
@@ -22,39 +22,13 @@ angular.module('eshopApp')
         }
 
         $scope.deleteProduct = function (product) {
+            $scope.delete = "Product successfully deleted.";
+
+            $timeout(function() {
+                $scope.delete = false;
+             }, 3000);
             $scope.products.$remove(product);
         };
-
-        /* Add to cart */
-
-        //iniating the myCart object
-        $scope.myCart = [];
-
-        //items available in the table 
-
-
-        $scope.addItems = function (product) {
-            $scope.products.push(product);
-            $scope.product = {};
-        };
-
-        $scope.addToCart = function (product) {
-            $scope.myCart.push(angular.copy(product));
-            $scope.amount += product.price;
-            $scope.quant = $scope.myCart.length;
-        };
-
-
-
-        $scope.getTotalAmount = function () {
-            var i = 0;
-            for (i = 0; i < $scope.myCart.length; i++) {
-                $scope.myCart.product.price[i] * $scope.myCart.product.price[i];
-            }
-        };
-
-
-        $scope.amount = 0.00;
 
 
         $scope.price_slider = {
@@ -72,7 +46,7 @@ angular.module('eshopApp')
         $scope.$watchGroup(['price_slider.start[1]', 'price_slider.start[0]'], function (newValue, oldValue) {
             $scope.minPrice = newValue[1];
             $scope.maxPrice = newValue[0];
-            if ($scope.maxPrice == '0') {
+            if ($scope.maxPrice == '0' | $scope.maxPrice == '') {
                 $scope.maxPrice = 1000000000;
             }
             $scope.pricefilter = function (product) {
@@ -87,7 +61,6 @@ angular.module('eshopApp')
         $scope.flagDelete = true;
 
         $scope.search=[];
-
 
 
     })

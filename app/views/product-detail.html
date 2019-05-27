@@ -1,4 +1,4 @@
-<div class="container d-flex flex-wrap mt-5 mb-5" ng-hide="pt">
+<div class="container d-flex flex-wrap mt-5 mb-5 pt-5" ng-hide="pt">
     <div class="col-md-6">
       <h3 class="text-center">{{product.name}}</h3>
       <img class="productImage" ng-src={{product.imageurl}}>
@@ -10,7 +10,7 @@
       <h5>Display: {{product.display}}</h5>
       <h5>Price: {{product.price | currency: '€'}}</h5>
       <span class="badge badge-primary">Category: {{product.category}}</span><br><br>
-      <ngcart-addtocart template-url="views/addtocart.html" id="{{product.id}}" name="{{product.name}}" price="{{ product.price }}" quantity="1" quantity-max="30" data="item" class="text-white">Add to cart <i
+      <ngcart-addtocart template-url="views/addtocartSingle.html" id="{{product.id}}" name="{{product.name}}" price="{{ product.price }}" quantity="1" quantity-max="30" data="item" class="text-white">Add to cart <i
         class="fas fa-cart-plus text-white"></i></ngcart-addtocart>
     </div>
   </div>

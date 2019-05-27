@@ -29,10 +29,12 @@ angular
       .state('home', {
         url: '/',
         templateUrl: 'views/main.html',
+        data : { pageTitle: 'Home' }
       })
       .state('about', {
         url: '/about',
         templateUrl: 'views/about.html',
+        data : { pageTitle: 'About' }
       })
       .state('products', {
         url: '/products',
@@ -45,30 +47,36 @@ angular
         controller: 'ProductController'
       })
       .state('login', {
-        url:'/login',
+        url: '/login',
         templateUrl: 'views/login.html',
         controller: 'LoginController'
       })
       .state('register', {
-        url:'/register',
+        url: '/register',
         templateUrl: 'views/register.html',
         controller: 'RegistrationController'
       })
       .state('addproduct', {
-        url:'/add-product',
+        url: '/add-product',
         templateUrl: 'views/addProduct.html',
         controller: 'addProduct'
       })
       .state('editproduct', {
-        url:'/product/:id/edit',
-        templateUrl:'views/editProduct.html',
-        controller:'EditProduct'
+        url: '/product/:id/edit',
+        templateUrl: 'views/editProduct.html',
+        controller: 'EditProduct'
       })
       .state('summary', {
-        url:'/summary',
-        templateUrl:'views/summaryTotal.html'
+        url: '/summary',
+        templateUrl: 'views/summaryTotal.html',
+        controller:'checkoutController'
+      })
+      .state('category', {
+        url: '/categories',
+        templateUrl: 'views/categories.html',
+        controller:'categoryController'
       })
 
     $urlRouterProvider.otherwise('/');
 
-  });
+  })

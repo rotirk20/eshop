@@ -1,10 +1,13 @@
-
-<div class="col-md-6 mx-auto mt-4 alert alert-danger" role="alert" ng-show="ngCart.getTotalItems() === 0">
+<div class="col-md-6 mx-auto mt-5 pt-5 alert alert-danger" role="alert" ng-show="ngCart.getTotalItems() === 0">
     Your cart is empty.Go back to shop!<br>
     <a ui-sref="products">Shop</a>
 </div>
 
-<div class="table-responsive container" ng-show="ngCart.getTotalItems() > 0">
+<div class="mt-5 pt-5 container">
+    <input type="text" class="form-control" ng-model="user.email" placeholder="Email...">
+</div>
+
+<div class="table-responsive container mt-5 pt-5" ng-show="ngCart.getTotalItems() > 0">
 
     <table class="table table-striped ngCart cart">
 

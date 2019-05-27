@@ -23,8 +23,10 @@ angular.module('eshopApp')
                 if (firebaseUser) {
                     $scope.loggedIn = true;
                     var user = firebase.auth().currentUser;
-                    $scope.userUID = firebaseUser.uid;
-                    $scope.adminUID = '8lp0t1nLTMVa1EIY4L3wbF7a7ot2';
+                    localStorage.setItem('uid', firebaseUser.uid);
+                    $scope.userUID = firebaseUser.email;
+                    $scope.userid = firebaseUser.uid;
+                    $scope.adminUID = 'tarikdedic95@gmail.com';
                     if ($scope.userUID === $scope.adminUID) {
                         $scope.admin = true;
                     }

@@ -1,4 +1,4 @@
-<div class="mt-5 container d-flex flex-wrap">
+<div class="mt-5 pt-5 d-flex container flex-wrap">
   <div class="col-md-3">
     <section class="filter-section">
       <h3 class="text-center">Filter by price</h3>
@@ -24,17 +24,21 @@
     </section>
 
     <div class="categorySearch">
-    <input type="checkbox" data-ng-model='search.type1' data-ng-true-value="'phones'" data-ng-false-value='' /> Phones
-    &nbsp;&nbsp;&nbsp;<br>
-    <input type="checkbox" data-ng-model='search.type2' data-ng-true-value="'computers'" data-ng-false-value='' />
-    Computers <br>
-    <input type="checkbox" data-ng-model='search.type3' data-ng-true-value="'tablets'" data-ng-false-value='' />
-    Tablets
-  </div>
+      <input type="checkbox" data-ng-model='search.type1' data-ng-true-value="'phones'" data-ng-false-value='' /> Phones
+      &nbsp;&nbsp;&nbsp;<br>
+      <input type="checkbox" data-ng-model='search.type2' data-ng-true-value="'computers'" data-ng-false-value='' />
+      Computers <br>
+      <input type="checkbox" data-ng-model='search.type3' data-ng-true-value="'tablets'" data-ng-false-value='' />
+      Tablets
+    </div>
+
   </div>
   <div class="col-md-9 d-flex flex-wrap">
+    <div class="alert alert-danger d-block col-md-12" ng-show="delete">
+      <h5 class="text-center d-block m-0">{{delete}}</h5>
+    </div>
     <div class="card mb-4 ml-2 mr-2" style="width:15rem"
-      dir-paginate="product in products | filter:pricefilter |reverse | itemsPerPage: 6 | filter:search.type1 | filter:search.type2 |filter:search.type3">
+      dir-paginate="product in products | filter:pricefilter |reverse | itemsPerPage: 6 |filter:search.type1 | filter:search.type2 |filter:search.type3">
       <a ui-sref=" product({id:product.id})"><img ng-src="{{product.imageurl}}" class="card-img-top" style="height: 200px;
                   object-fit: contain;" alt="..."></a>
       <div class="card-body">

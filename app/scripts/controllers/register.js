@@ -19,6 +19,7 @@ angular.module('eshopApp')
 
                 $scope.register = function () {
 
+
                     auth.$createUserWithEmailAndPassword(
                         $scope.user.email,
                         $scope.user.password

@@ -15,6 +15,9 @@ angular.module('eshopApp')
 
             //Finally you get the 'posts' node and send to scope
             $scope.productsRef = snapshot.val();
+            var key = Object.keys(snapshot.val());
+            console.log(key);
+
         });
         var categories = firebase.database().ref('category');
 
