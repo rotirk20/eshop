@@ -5,7 +5,7 @@ version 0.16.0.
 
 ## Build & development
 
-Run `grunt` for building and `grunt serve` for preview.
+Install `npm install grunt`, run `grunt` for building and `grunt serve` for preview.
 
 ## Testing
 
