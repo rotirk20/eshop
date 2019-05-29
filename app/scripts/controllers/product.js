@@ -13,5 +13,6 @@ angular.module('eshopApp')
     var ref = firebase.database().ref('products');
     ref.orderByChild("id").equalTo(id).on("child_added", function (snapshot) {
         $scope.product = snapshot.val();
+        console.log($scope.product);
     });
 });

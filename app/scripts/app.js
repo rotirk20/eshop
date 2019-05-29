@@ -76,6 +76,11 @@ angular
         templateUrl: 'views/categories.html',
         controller:'categoryController'
       })
+      .state('orders', {
+        url:'/orders',
+        templateUrl: 'views/orders.html',
+        controller:'orderController'
+      })
 
     $urlRouterProvider.otherwise('/');
 

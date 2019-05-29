@@ -14,12 +14,9 @@ angular.module('eshopApp')
 
                 var ref = firebase.database().ref();
                 var auth = $firebaseAuth();
-
-
+                
 
                 $scope.register = function () {
-
-
                     auth.$createUserWithEmailAndPassword(
                         $scope.user.email,
                         $scope.user.password
@@ -35,7 +32,6 @@ angular.module('eshopApp')
                                 $state.go('home');
                             })
                         }, 1000);
-
 
                     }).catch(function (error) {
                         $scope.messages = error.message;

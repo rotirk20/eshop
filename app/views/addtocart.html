@@ -14,6 +14,7 @@
     </div>
     <mark  ng-show="inCart()">
         <div class="alert alert-success added"> This item is in your cart.</div>
+        {{added}}
         <div class="alert alert-danger delete"><a ng-click="ngCart.removeItemById(id)" style="cursor: pointer;" class="text-white">Remove</a></div>
 
     </mark>

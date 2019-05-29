@@ -54,6 +54,7 @@ angular.module('eshopApp')
                 }).catch(function (error) {
                     $scope.loggedIn = false;
                     $scope.error = error.message;
+                    localStorage.removeItem('uid', firebaseUser.uid);
                     console.log($scope.error);
                 });
 
@@ -62,6 +63,8 @@ angular.module('eshopApp')
 
             $scope.signOut = function () {
                 firebase.auth().signOut().then(function () {
+                    localStorage.removeItem('uid');
+                    localStorage.removeItem('cart');
                     $scope.$apply(function () {
                         $scope.loggedIn = false;
                         $state.go('login');

@@ -16,21 +16,18 @@ angular.module('eshopApp')
 
             //Finally you get the 'posts' node and send to scope
             $scope.ref = snapshot.val();
-            console.log(ref);
         });
 
-        $scope.options = [{ currency: "EUR" },
-        { currency: "BAM" }];
-
-        $scope.$watch('selectedOption', function () {
-            if($scope.selectedOption === "BAM") {
-                $scope.products.price = $scope.products.price / 2;
-                console.log($scope.products)
-            }
-            else if($scope.selectedOption === "EUR") {
-                $scope.products.price = $scope.products.price;
-                console.log($scope.products.price)
-            }
-        })
+        $scope.currency = {};
+    $scope.currencies = [
+        {"value": 1, "currency": "EUR"},
+        {"value": 2, "currency": "BAM"}
+    ];
+    $scope.$watch("currency", function() {
+        if ($scope.currency.currency === "BAM") {
+            $scope.products.price = $scope.products.price / 2;
+            console.log('Cijena promjenjena');
+        }
+    });
 
     })
