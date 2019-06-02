@@ -23,22 +23,42 @@
 
     </section>
 
-    <div class="categorySearch">
-      <input type="checkbox" data-ng-model='search.type1' data-ng-true-value="'phones'" data-ng-false-value='' /> Phones
-      &nbsp;&nbsp;&nbsp;<br>
-      <input type="checkbox" data-ng-model='search.type2' data-ng-true-value="'computers'" data-ng-false-value='' />
-      Computers <br>
-      <input type="checkbox" data-ng-model='search.type3' data-ng-true-value="'tablets'" data-ng-false-value='' />
-      Tablets
-    </div>
+    <h3 class="text-center mt-4">Filter by category</h3>
+    <select class="form-control" ng-model="selectedCategory">
+      <option value="" selected style="text-align:center;">-All-</option>
+      <option ng-repeat="cat in cats" value="{{cat.category}}">
+        {{cat.category}}
+      </option>
+    </select>
+
 
   </div>
   <div class="col-md-9 d-flex flex-wrap">
     <div class="alert alert-danger d-block col-md-12" ng-show="delete">
       <h5 class="text-center d-block m-0">{{delete}}</h5>
     </div>
+
+
     <div class="card mb-4 ml-2 mr-2" style="width:15rem"
-      dir-paginate="product in products | filter:pricefilter |reverse | itemsPerPage: 6 |filter:search.type1 | filter:search.type2 |filter:search.type3">
+      dir-paginate="product in products | filter:pricefilter |reverse | itemsPerPage: 6 | filter:{category:selectedCategory}">
+      <div class="admin_area">
+        <div class="outer d-inline-block" uib-tooltip="Edit" tooltip-trigger="'mouseenter'" tooltip-enable="flag"
+          tooltip-is-open="isOpen">
+          <div class="layer"></div>
+          <a ui-sref="editproduct({id:product.id})" class="btn btn-success btn-sm mt-2 tip-top" ng-hide="!loggedIn"
+            ng-if="userUID === adminUID" data-toggle="tooltip" data-placement="top" title="Some text"><i
+              class="far fa-edit"></i></a>
+        </div>
+
+        <div class="outer d-inline-block" uib-tooltip="Delete" tooltip-trigger="'mouseenter'"
+          tooltip-enable="flagDelete" tooltip-is-open="isOpens">
+          <div class="layer"></div>
+          <button class="btn btn-danger btn-sm mt-2" ng-click="deleteProduct(product)" ng-hide="!loggedIn"
+            ng-if="userUID === adminUID" data-toggle="tooltip" data-placement="top" title="Some text"><i
+              class="fas fa-trash-alt"></i></button>
+        </div>
+
+      </div>
       <a ui-sref=" product({id:product.id})"><img ng-src="{{product.imageurl}}" class="card-img-top" style="height: 200px;
                   object-fit: contain;" alt="..."></a>
       <div class="card-body">
@@ -57,29 +77,14 @@
             class="fas fa-cart-plus text-white"></i></ngcart-addtocart>
 
         <br>
-        <div class="admin_area">
-          <div class="outer d-inline-block" uib-tooltip="Edit" tooltip-trigger="'mouseenter'" tooltip-enable="flag"
-            tooltip-is-open="isOpen">
-            <div class="layer"></div>
-            <a ui-sref="editproduct({id:product.id})" class="btn btn-success btn-sm mt-2 tip-top" ng-hide="!loggedIn"
-              ng-if="userUID === adminUID" data-toggle="tooltip" data-placement="top" title="Some text"><i
-                class="far fa-edit"></i></a>
-          </div>
 
-          <div class="outer d-inline-block" uib-tooltip="Delete" tooltip-trigger="'mouseenter'"
-            tooltip-enable="flagDelete" tooltip-is-open="isOpens">
-            <div class="layer"></div>
-            <button class="btn btn-danger btn-sm mt-2" ng-click="deleteProduct(product)" ng-hide="!loggedIn"
-              ng-if="userUID === adminUID" data-toggle="tooltip" data-placement="top" title="Some text"><i
-                class="fas fa-trash-alt"></i></button>
-          </div>
-
-        </div>
       </div>
     </div>
     <div class="col-md-12 d-block">
       <dir-pagination-controls max-size="6" boundary-links="true" template-url="views/dirPagination.tpl.html">
       </dir-pagination-controls>
     </div>
+    <h5 class="text-center col-md-12 d-block" ng-hide="products.length">No products.Coming soon!</h5>
+
   </div>
 </div>

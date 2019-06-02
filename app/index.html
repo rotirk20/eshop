@@ -15,7 +15,9 @@
   <link rel="stylesheet" href="bower_components/bootstrap-select/dist/css/bootstrap-select.min.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap" />
   <link rel="stylesheet" href="bower_components/css-hamburgers/dist/hamburgers.css" />
+  <link rel="stylesheet" href="/bower_components/angular-ui-notification/dist/angular-ui-notification.min.css">
 
+  <base href="/">
   <!-- endbower -->
   <!-- endbuild -->
   <!-- build:css(.tmp) styles/main.css -->
@@ -42,7 +44,7 @@
           </span>
         </button>
         <div class="collapse navbar-collapse" id="navbarColor03">
-          <ul class="navbar-nav ml-auto">
+          <ul class="navbar-nav primary ml-auto">
             <li class="nav-item">
               <a class="nav-link" ui-sref="home" ui-sref-active="active">Home</a>
             </li>
@@ -58,41 +60,43 @@
               </select>
             </div>
           </ul>
-          <div ng-controller="searchController">
+          <div ng-controller="searchController" class="search-products">
 
             <form ng-submit="click(search);">
               <input class="form-control search" type="text" ng-focus="focus()" ng-blur="blur()" ng-model="search"
                 list="names" placeholder="Search products...">
               <datalist ng-click="click()" ng-show="show||mouseover" ng-mouseover="mouseover=true"
                 ng-mouseleave="mouseover=false" id="names" class="form-control pretraga" ng-model="name">
+
                 <div ng-repeat="option in products | filter:search | limitTo:3" value="{{option.name}}">
-                  <a class="productSearchName" ui-sref="product({id:option.id})">
-                    <h5 class="d-inline-block no-text-underline">{{option.name}}</h5>
-                    <div class="search-img d-inline-block" style="background:url('{{option.imageurl}}')">
+                  <a class="productSearchName d-flex" ui-sref="product({id:option.id})">
+                    <h5 class="col-md-6 p-0 no-text-underline m-0">{{option.name}}</h5>
+                    <div class="search-img text-center col-md-6 pl-0 pr-0" style="background:url('{{option.imageurl}}')">
                     </div>
                   </a>
               </datalist>
             </form>
           </div>
         </div>
-        <a ui-sref="summary">
+        <a ui-sref="summary" >
           <ngcart-summary template-url="views/summary.html"></ngcart-summary>
         </a>
 
-        <li class="nav-item" ng-hide="loggedIn">
+        <li class="nav-item logIn" ng-hide="loggedIn">
           <a class="nav-link btn btn-primary" ui-sref="login" ui-sref-active="active">Login <i
               class="fas fa-sign-in-alt"></i></a>
         </li>
-        <ul ng-show="loggedIn" class="nav nav-pills d-sm-none d-sm-block">
+        <ul ng-show="loggedIn" class="nav nav-pills d-sm-none d-sm-block profile">
 
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown rightMenu">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="" role="button" aria-haspopup="true"
-              aria-expanded="false"><i class="far fa-user"></i></a>
+              aria-expanded="false">{{displayName}} <i class="far fa-user"></i></a>
             <div class="dropdown-menu shadow-lg"> <a class="dropdown-item" ng-if="userUID === adminUID"
                 ui-sref="addproduct">Add product</a>
               <a class="dropdown-item" ng-if="userUID === adminUID" ui-sref="category">Categories</a>
               <a class="dropdown-item" ui-sref="products">Products</a>
               <a class="dropdown-item" ui-sref="orders">Orders</a>
+              <a class="dropdown-item" ng-if="userUID === adminUID" ui-sref="allorders">All orders</a>
               <div class="dropdown-divider m-0"></div>
               <a href="" class="dropdown-item btn-danger logout text-white" ng-click="signOut()">Log out <i
                   class="fas fa-sign-out-alt"></i></a>
@@ -105,9 +109,9 @@
 
   <ui-view></ui-view>
 
-  <div class="footer mt-5">
+  <div class="footer bg-dark pt-3 pb-3 mt-5">
     <div class="container">
-      <p class="text-center">Ecommerce shop | Tarik Dedić</p>
+      <p class="text-center m-0">Ecommerce shop | Tarik Dedić</p>
     </div>
   </div>
 
@@ -128,10 +132,10 @@
   <!-- build:js(.) scripts/vendor.js -->
   <!-- bower:js -->
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
-
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-i18n/angular-locale_de-de.js"></script>
   <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="bower_components/popper.js/dist/umd/popper.min.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
   <script src="bower_components/angular-animate/angular-animate.js"></script>
   <script src="bower_components/angular-aria/angular-aria.js"></script>
@@ -147,6 +151,9 @@
   <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
   <script src="bower_components/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
   <script src="bower_components/ngCart/dist/ngCart.js"></script>
+  <script src="bower_components/tinymce/tinymce.js"></script>
+  <script src="bower_components/angular-ui-tinymce/src/tinymce.js"></script>
+  <script src="/bower_components/angular-ui-notification/dist/angular-ui-notification.min.js"></script>
 
   <!-- endbower -->
   <!-- endbuild -->
@@ -164,6 +171,8 @@
   <script src="scripts/scripts.js"></script>
   <script src="scripts/controllers/checkoutController.js"></script>
   <script src="scripts/controllers/orders.js"></script>
+  <script src="scripts/controllers/allorders.js"></script>
+  
 
 
   <!-- endbuild -->

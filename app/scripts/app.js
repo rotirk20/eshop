@@ -22,19 +22,23 @@ angular
     'firebase',
     'angularUtils.directives.dirPagination',
     'ui.bootstrap',
-    'ngCart'
+    'ngCart',
+    'ui.tinymce',
+    'ui-notification'
   ])
-  .config(function ($stateProvider, $urlRouterProvider) {
+
+  
+  .config(function ($stateProvider, $urlRouterProvider,$locationProvider) {
+    $urlRouterProvider.otherwise('/');
+
     $stateProvider
       .state('home', {
         url: '/',
         templateUrl: 'views/main.html',
-        data : { pageTitle: 'Home' }
       })
       .state('about', {
         url: '/about',
         templateUrl: 'views/about.html',
-        data : { pageTitle: 'About' }
       })
       .state('products', {
         url: '/products',
@@ -81,7 +85,33 @@ angular
         templateUrl: 'views/orders.html',
         controller:'orderController'
       })
+      .state('allorders', {
+        url:'/all-orders',
+        templateUrl: 'views/allorders.html',
+        controller:'allOrders'
+      })
+      .state('orderSuccess', {
+        url:'/order-success',
+        templateUrl:'views/successOrder.html'
+      })
+      .state("otherwise", {
+        url: "*path",
+        templateUrl: "views/not-found.html"
+    });
 
-    $urlRouterProvider.otherwise('/');
+    $locationProvider.html5Mode(true);
+
 
   })
+
+  .config(function(NotificationProvider) {
+    NotificationProvider.setOptions({
+        delay: 4000,
+        startTop: 20,
+        startRight: 10,
+        verticalSpacing: 20,
+        horizontalSpacing: 20,
+        positionX: 'right',
+        positionY: 'bottom'
+    });
+  });

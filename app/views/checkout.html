@@ -1,73 +1,81 @@
 <div class="container mt-5 pt-2">
-<div class="col-md-6 mx-auto mt-5 alert alert-danger" role="alert" ng-show="ngCart.getTotalItems() === 0">
-    Your cart is empty.Go back to shop!<br>
-    <a ui-sref="products">Shop</a>
-</div>
+
+    <div class="col-md-6 mx-auto mt-5 alert alert-danger" role="alert" ng-show="ngCart.getTotalItems() === 0">
+        Your cart is empty.Go back to shop!<br>
+        <a ui-sref="products">Shop</a>
+    </div>
 
 
+    <div class="table-responsive container mt-5 pt-5" ng-show="ngCart.getTotalItems() > 0"
+        ng-controller="LoginController">
 
+        <table class="table table-striped ngCart cart">
 
-<div class="table-responsive container mt-5 pt-5" ng-show="ngCart.getTotalItems() > 0" ng-controller="LoginController">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th>Quantity</th>
+                    <th>Amount</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr ng-show="ngCart.getTax()">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Tax ({{ ngCart.getTaxRate() }}%):</td>
+                    <td>{{ ngCart.getTax() | currency }}</td>
+                </tr>
+                <tr ng-show="ngCart.getShipping()">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Shipping:</td>
+                    <td>{{ ngCart.getShipping() | currency }}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Total:</td>
+                    <td>{{ ngCart.totalCost() | currency }}</td>
+                </tr>
+            </tfoot>
+            <tbody>
+                <tr ng-repeat="item in ngCart.getCart().items track by $index">
+                    <td><span ng-click="ngCart.removeItemById(item.getId())"><i class="far fa-trash-alt"></i></span>
+                    </td>
 
-    <table class="table table-striped ngCart cart">
-
-        <thead>
-        <tr>
-            <th></th>
-            <th></th>
-            <th>Quantity</th>
-            <th>Amount</th>
-            <th>Total</th>
-        </tr>
-        </thead>
-        <tfoot>
-        <tr ng-show="ngCart.getTax()">
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>Tax ({{ ngCart.getTaxRate() }}%):</td>
-            <td>{{ ngCart.getTax() | currency }}</td>
-        </tr>
-        <tr ng-show="ngCart.getShipping()">
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>Shipping:</td>
-            <td>{{ ngCart.getShipping() | currency }}</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>Total:</td>
-            <td>{{ ngCart.totalCost() | currency }}</td>
-        </tr>
-        </tfoot>
-        <tbody>
-        <tr ng-repeat="item in ngCart.getCart().items track by $index">
-            <td><span ng-click="ngCart.removeItemById(item.getId())"><i class="far fa-trash-alt"></i></span></td>
-
-            <td>{{ item.getName() }}</td>
-            <td><span ng-class="{'disabled':item.getQuantity()==1}"
-                      ng-click="item.setQuantity(-1, true)"><i class="fas fa-minus"></i></span>&nbsp;&nbsp;
-                {{ item.getQuantity() | number }}&nbsp;&nbsp;
-                <span ng-click="item.setQuantity(1, true)"><i class="fas fa-plus"></i></span></td>
-            <td>{{ item.getPrice() | currency}}</td>
-            <td>{{ item.getTotal() | currency }}</td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-<div class="container" ng-controller="checkoutController">
-<button class="btn btn-primary" ng-show="loginCheck" ng-click="buy()">Checkout</button>
-<a ui-sref="register" class="btn btn-success" ng-show="!loginCheck">Register to order</a>
-</div>
+                    <td>{{ item.getName() }}</td>
+                    <td><span ng-class="{'disabled':item.getQuantity()==1}" ng-click="item.setQuantity(-1, true)"><i
+                                class="fas fa-minus"></i></span>&nbsp;&nbsp;
+                        {{ item.getQuantity() | number }}&nbsp;&nbsp;
+                        <span ng-click="item.setQuantity(1, true)"><i class="fas fa-plus"></i></span></td>
+                    <td>{{ item.getPrice() | currency}}</td>
+                    <td>{{ item.getTotal() | currency }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="container d-flex flex-wrap" ng-controller="checkoutController">
+        <div class="col-md-6">
+            <button class="btn btn-primary" ng-click="buy()" ng-hide="total == 0 || !loginCheck">Checkout</button>
+            <a ui-sref="register" class="btn btn-success" ng-show="!loginCheck">Register to order</a>
+        </div>
+        <div class="col-md-6">
+            <button class="btn btn-danger float-right" ng-click="ngCart.empty()" ng-hide="ngCart.getTotalItems() === 0">Clear
+                cart</button>
+        </div>
+    </div>
 </div>
 <style>
     .ngCart.cart span[ng-click] {
         cursor: pointer;
     }
+
     .ngCart.cart .glyphicon.disabled {
-        color:#aaa;
+        color: #aaa;
     }
 </style>

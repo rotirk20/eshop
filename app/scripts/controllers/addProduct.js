@@ -8,18 +8,17 @@
  * Controller of the eshopApp
  */
 angular.module('eshopApp')
-.controller('addProduct', ['$scope', '$firebaseAuth', '$location', '$firebaseArray', '$firebase', '$state', function ($scope, $firebaseAuth, $location, $firebaseArray, $firebase, $state) {
+.controller('addProduct', ['$scope', '$firebaseAuth', '$location', '$firebaseArray', '$firebase', '$state','$timeout', function ($scope, $firebaseAuth, $location, $firebaseArray, $firebase, $state,$timeout,Notification) {
     if ($scope.admin) {
-        var productsRef = firebase.database().ref('products');
+        var productsRef = firebase.database().ref('products'),
+        categories = firebase.database().ref('category');
+
         productsRef.on('value', function (snapshot) {
 
             //Finally you get the 'posts' node and send to scope
             $scope.productsRef = snapshot.val();
-            var key = Object.keys(snapshot.val());
-            console.log(key);
 
         });
-        var categories = firebase.database().ref('category');
 
 
         // GET PRODUCTS AS AN ARRAY
@@ -39,6 +38,7 @@ angular.module('eshopApp')
                 ram: $scope.product.ram,
                 processor: $scope.product.processor,
                 display: $scope.product.display,
+                description:$scope.product.description,
                 price: parseInt($scope.product.price),
                 category: $scope.product.category.category,
                 imageurl: imageUrl
@@ -50,12 +50,12 @@ angular.module('eshopApp')
             $scope.product.display = "";
             $scope.product.price = "";
             $scope.product.category = "";
-            window.setTimeout(function () {
-                $scope.$apply(function () {
-                    $window.location.reload();
-
-                })
-            }, 3000);
+            $scope.product.description = "";
+            $scope.product.image = "";
+            imageUrl = "";
+            $timeout(function() {
+                $state.reload();
+             }, 1500);
         };
         // Add category
         $scope.addCategory = function () {
@@ -80,11 +80,9 @@ angular.module('eshopApp')
 
         fileButton.addEventListener('change', function (e) {
 
-            var file = e.target.files[0];
-
-            var storageRef = firebase.storage().ref('images').child(file.name);
-
-            var task = storageRef.put(file);
+            var file = e.target.files[0],
+            storageRef = firebase.storage().ref('images').child(file.name),
+            task = storageRef.put(file);
 
             task.on('state_changed',
 

@@ -7,7 +7,7 @@
                 <h5 class="text-center">{{msgDel}}</h5>
         </div>
 
-
+    <h3>All created categories:</h3>
     <ul class="list-group col-md-4">
         <li class="list-group-item" ng-repeat="category in categories"><h5 class="d-inline-block">{{category.category}}</h5>
             <button class="btn btn-danger btn-sm float-right" ng-click="deleteCat(category)" ng-hide="!loggedIn"

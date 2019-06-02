@@ -6,16 +6,12 @@
     <div>
         <span ng-show="quantityMax">
             <select class="form-control col-md-3" name="quantity" id="quantity" ng-model="q"
-                    ng-options=" v for v in qtyOpt"></select>
+                ng-options=" v for v in qtyOpt"></select>
         </span><br>
-        <a class="btn btn-primary d-block text-center"
-           ng-click="ngCart.addItem(id, name, price, q, data)"
-           ng-transclude></a>
+        <a class="btn btn-primary d-block text-center" ng-controller="searchController"
+            ng-click="ngCart.addItem(id, name, price, q, data);added()" ng-transclude></a>
     </div>
-    <mark  ng-show="inCart()">
-        <div class="alert alert-success added"> This item is in your cart.</div>
-        {{added}}
-        <div class="alert alert-danger delete"><a ng-click="ngCart.removeItemById(id)" style="cursor: pointer;" class="text-white">Remove</a></div>
+    <mark ng-show="inCart()" ng-controller="searchController" class="p-0">
 
     </mark>
 </div>

@@ -9,8 +9,9 @@
  */
 angular.module('eshopApp')
 .controller('LoginController',
-['$scope', '$firebase', '$firebaseAuth', '$state',
-    function ($scope, $firebase, $firebaseAuth, $state, $rootScope) {
+['$scope', '$firebase', '$firebaseAuth', '$state','$timeout','$location',
+    function ($scope, $firebase, $firebaseAuth, $state, $timeout, $location, $rootScope) {
+        $timeout(function() {
         if ($scope.loggedIn) {
             $state.go('home')
         }
@@ -26,9 +27,12 @@ angular.module('eshopApp')
                     localStorage.setItem('uid', firebaseUser.uid);
                     $scope.userUID = firebaseUser.email;
                     $scope.userid = firebaseUser.uid;
+                    $scope.displayName = firebaseUser.displayName;
                     $scope.adminUID = 'tarikdedic95@gmail.com';
                     if ($scope.userUID === $scope.adminUID) {
                         $scope.admin = true;
+                    } else {
+                        $scope.admin = false;
                     }
                 } else {
                     $scope.loggedIn = false;
@@ -44,6 +48,7 @@ angular.module('eshopApp')
 
                 $scope.auth.$signInWithEmailAndPassword($scope.user.email, $scope.user.password).then(function (firebaseUser) {
                     $scope.firebaseUser = firebaseUser;
+                    $scope.displayName = firebaseUser.displayName;
                     $scope.message = "Successfully loged in";
                     $scope.loggedIn = true;
                     window.setTimeout(function () {
@@ -67,10 +72,12 @@ angular.module('eshopApp')
                     localStorage.removeItem('cart');
                     $scope.$apply(function () {
                         $scope.loggedIn = false;
+                        
                         $state.go('login');
                     });
                 });
             }
         }
+    }, 500);
 
     }]) //controller

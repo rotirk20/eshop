@@ -9,10 +9,9 @@
  */
 angular.module('eshopApp')
 .controller('RegistrationController',
-        ['$scope', '$firebase', '$firebaseAuth', '$state',
-            function ($scope, $firebase, $firebaseAuth, $state) {
+        ['$scope', '$firebase', '$firebaseAuth', '$state','$firebaseArray','$window',
+            function ($scope, $firebase, $firebaseAuth, $state, $firebaseArray,$window) {
 
-                var ref = firebase.database().ref();
                 var auth = $firebaseAuth();
                 
 
@@ -21,15 +20,25 @@ angular.module('eshopApp')
                         $scope.user.email,
                         $scope.user.password
                     ).then(function (regUser) {
+                        regUser.user.updateProfile({
+                            displayName: $scope.user.firstname
+                          })
                         $scope.message = $scope.user.firstname + " you registered successfully!";
+                        var userRef = firebase.database().ref().child('users/' + regUser.user.uid);
+                        userRef.set({
+                            firstName: $scope.user.firstname,
+                            lastName: $scope.user.lastname,
+                            email: $scope.user.email
+                          });
                         $scope.user.firstname = "";
                         $scope.user.lastname = "";
                         $scope.user.email = "";
                         $scope.user.password = "";
-                        console.log(regUser);
+                        console.log(regUser.user.uid);
                         window.setTimeout(function () {
                             $scope.$apply(function () {
                                 $state.go('home');
+                                $window.location.href = '/';
                             })
                         }, 1000);
 

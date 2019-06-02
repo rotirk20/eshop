@@ -8,9 +8,11 @@
  * Controller of the eshopApp
  */
 angular.module('eshopApp')
-    .controller('searchController', function ($scope, $firebaseArray, firebase,$timeout) {
+    .controller('searchController', function ($scope, $firebaseArray, firebase,$timeout,Notification) {
 
-        const ref = firebase.database().ref('products');
+        var categories = firebase.database().ref('category'),
+        ref = firebase.database().ref('products');
+        $scope.cats = $firebaseArray(categories);
         $scope.products = $firebaseArray(ref);
         $scope.show = false;
         $scope.mouseover = false;
@@ -20,6 +22,11 @@ angular.module('eshopApp')
         $scope.blur = function () {
             $scope.show = false;
         }
+
+        $scope.added= function () {
+                Notification.success('Added to cart');
+        }
+
 
 
         $scope.deleteProduct = function (product) {
@@ -61,13 +68,10 @@ angular.module('eshopApp')
         $scope.flag = true;
         $scope.flagDelete = true;
 
-        $scope.search=[];
-
-
     })
 
     .filter('reverse', function () {
         return function (items) {
             return items.slice().reverse();
         };
-    });
+    })

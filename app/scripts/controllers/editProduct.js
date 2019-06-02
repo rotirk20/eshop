@@ -10,8 +10,10 @@
 angular.module('eshopApp')
 .controller('EditProduct', ['$scope', '$firebaseAuth', '$location', '$firebaseArray', '$firebase', '$stateParams', '$firebaseObject', '$state','$timeout', function ($scope, $firebaseAuth, $location, $firebaseArray, $firebase, $stateParams, $firebaseObject, $state,$timeout) {
     if ($scope.admin) {
-        var id = parseInt($stateParams.id);
-        var ref = firebase.database().ref('products');
+        var id = parseInt($stateParams.id),
+        ref = firebase.database().ref('products'),
+        categories = firebase.database().ref('category');
+
         ref.orderByChild("id").equalTo(id).on("child_added", function (snapshot) {
             $scope.product = snapshot.val();
 
@@ -26,6 +28,7 @@ angular.module('eshopApp')
                     name: $scope.product.name,
                     ram: $scope.product.ram,
                     price: $scope.product.price,
+                    description: $scope.product.description
                     //category: $scope.product.category.category
                 })
                     .then(
@@ -38,7 +41,6 @@ angular.module('eshopApp')
                     );
             }
         });
-        var categories = firebase.database().ref('category');
 
 
         // GET PRODUCTS AS AN ARRAY

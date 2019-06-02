@@ -1,0 +1,25 @@
+<div class="mt-5 pt-5 container">
+<div ng-repeat="order in messages" class="container" ng-hide="!order.orders">
+        <h3>Order</h3>
+        Ordered by: {{order.firstName}} {{order.lastName}} <br>
+  <ul ng-repeat="item in order.orders" class="pl-0">
+            <table class="table table-bordered">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Product</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="items in item.items" ng-controller="searchController">
+                            <td><a style="text-decoration: none;" ui-sref="product({id:items._id})">{{items._name}}</a></td>
+                            <td>{{items._quantity}}</td>
+                            <td>{{items._price | currency}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                Total: {{item.total | currency}}
+  </ul>
+</div>
+</div>

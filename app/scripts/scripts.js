@@ -11,7 +11,15 @@ jQuery( document ).ready(function() {
        }
        
     });
+
+    jQuery('.example').on('change', function() {
+      jQuery('.example').not(this).prop('checked', false);  
+  });
+  
     });
+
+
+
 
       // Look for .hamburger
   var hamburger = document.querySelector(".hamburger");

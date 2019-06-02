@@ -189,10 +189,18 @@ a.no-text-underline {
   bottom: 15px;
 }
 
+.btn-link:hover {
+  text-decoration: none;
+}
+
+.btn-link:focus {
+  text-decoration: none;
+}
+
+
 .no-text-underline {
   text-decoration: none;
   position: relative;
-  bottom: 15px;
 }
 
 a.no-text-underline:hover {
@@ -200,6 +208,10 @@ a.no-text-underline:hover {
 }
 a.productSearchName {
   text-decoration: none;
+}
+
+.currenc select {
+    height: calc(1em + 2rem + 0rem);
 }
 
 .total {
@@ -226,7 +238,7 @@ a.productSearchName {
 
 
 img.logo {
-  height:80px;
+  height:60px;
 }
 
 .carousel-caption {
@@ -250,5 +262,56 @@ img.logo {
           height:50%;
     }    
    }
+
+@media only screen and (max-width:991px) {
+  ul.navbar-nav.ml-auto {
+    text-align: center!important;
+}
+.primary li.nav-item {
+  border-bottom:1px solid #f3f3f3d3;
+}
+.primary li.nav-item:first-child {
+  border-top:1px solid #f3f3f3d3;
+}
+#names {
+  width:330px;
+}
+.cart {
+  padding: 20px 0px;
+}
+.search-products {
+  margin: 15px 0px;
+}
+.logIn {
+  margin: 15px 30px;
+}
+.profile {
+  margin: 10px 0px;
+  display: block;
+  text-align: center;
+}
+}
   
-  
+.print {
+  cursor: pointer;
+}
+
+.msg h5 {
+  margin:0px;
+}
+
+.rightMenu {
+  background-color: #2196F3;
+  border-radius: 5px;
+}
+a.nav-link.dropdown-toggle {
+  color: #FFF;
+}
+
+.card-body {
+  padding: 1.25rem 1.25rem 0 1.25rem;
+}
+
+div#myTabContent {
+  width: 100%;
+}
