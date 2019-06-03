@@ -5,8 +5,5 @@ version 0.16.0.
 
 ## Build & development
 
-Install `npm install grunt`, run `grunt` for building and `grunt serve` for preview.
+Run `npm install` and `bower install` then start app with `grunt serve` for preview.
 
-## Testing
-
-Running `grunt test` will run the unit tests with karma.
