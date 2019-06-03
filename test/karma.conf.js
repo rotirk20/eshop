@@ -20,6 +20,7 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       // bower:js
+      'bower_components/jquery/dist/jquery.js',
       'bower_components/angular/angular.js',
       'bower_components/bootstrap/dist/js/bootstrap.js',
       'bower_components/angular-animate/angular-animate.js',
@@ -38,6 +39,10 @@ module.exports = function(config) {
       'bower_components/tinymce/tinymce.js',
       'bower_components/angular-ui-tinymce/src/tinymce.js',
       'bower_components/angular-ui-notification/dist/angular-ui-notification.js',
+      'bower_components/angular-ui-router/release/angular-ui-router.js',
+      'bower_components/angularUtils-pagination/dirPagination.js',
+      'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+      'bower_components/bootstrap-select/dist/js/bootstrap-select.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',
