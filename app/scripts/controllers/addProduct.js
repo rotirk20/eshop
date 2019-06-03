@@ -38,8 +38,10 @@ angular.module('eshopApp')
                 ram: $scope.product.ram,
                 processor: $scope.product.processor,
                 display: $scope.product.display,
+                gpu: $scope.product.gpu,
                 description:$scope.product.description,
                 price: parseInt($scope.product.price),
+                discount: parseInt($scope.product.discount),
                 category: $scope.product.category.category,
                 imageurl: imageUrl
             });
@@ -49,9 +51,11 @@ angular.module('eshopApp')
             $scope.product.processor = "";
             $scope.product.display = "";
             $scope.product.price = "";
+            $scope.product.discount = "";
             $scope.product.category = "";
             $scope.product.description = "";
             $scope.product.image = "";
+            $scope.product.gpu = "";
             imageUrl = "";
             $timeout(function() {
                 $state.reload();

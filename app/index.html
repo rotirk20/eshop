@@ -43,7 +43,7 @@
           </span>
         </button>
         <div class="collapse navbar-collapse" id="navbarColor03">
-          <ul class="navbar-nav primary ml-auto">
+          <ul class="navbar-nav primary ml-auto mr-1">
             <li class="nav-item">
               <a class="nav-link" ui-sref="home" ui-sref-active="active">Home</a>
             </li>
@@ -53,12 +53,12 @@
             <li class="nav-item">
               <a class="nav-link" ui-sref="products" ui-sref-active="active">Products</a>
             </li>
-            <div class="dropdown mr-2 currenc">
-              <select class="form-control" ng-model="currency" ng-options="c.currency for c in currencies">
-
-              </select>
-            </div>
           </ul>
+          <div class="dropdown mr-2 currenc">
+            <select class="form-control" ng-model="currency" ng-options="c.currency for c in currencies">
+
+            </select>
+          </div>
           <div ng-controller="searchController" class="search-products">
 
             <form ng-submit="click(search);">
@@ -171,6 +171,7 @@
   <script src="scripts/controllers/checkoutController.js"></script>
   <script src="scripts/controllers/orders.js"></script>
   <script src="scripts/controllers/allorders.js"></script>
+  <script src="scripts/controllers/main.js"></script>
   
 
 

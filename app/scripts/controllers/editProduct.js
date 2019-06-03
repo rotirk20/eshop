@@ -28,7 +28,9 @@ angular.module('eshopApp')
                     name: $scope.product.name,
                     ram: $scope.product.ram,
                     price: $scope.product.price,
-                    description: $scope.product.description
+                    discount: $scope.product.discount,
+                    description: $scope.product.description,
+                    gpu: $scope.product.gpu
                     //category: $scope.product.category.category
                 })
                     .then(

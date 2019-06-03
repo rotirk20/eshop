@@ -7,7 +7,8 @@
     <h3>Specifications</h3>
     <h5>Processor: {{product.processor}}</h5>
     <h5>RAM: {{product.ram}}</h5>
-    <h5>Display: {{product.display}}</h5>
+    <h5 ng-show="product.display != ''">Display: {{product.display}}</h5>
+    <h5 ng-show="product.gpu != ''">GPU: {{product.gpu}}</h5>
     <h5>Price: {{product.price | currency: '€'}}</h5>
     <span class="badge badge-primary">Category: {{product.category}}</span><br><br>
     <ngcart-addtocart template-url="views/addtocartSingle.html" id="{{product.id}}" name="{{product.name}}"

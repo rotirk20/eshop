@@ -40,7 +40,8 @@
 
 
     <div class="card mb-4 ml-2 mr-2" style="width:15rem"
-      dir-paginate="product in products | filter:pricefilter |reverse | itemsPerPage: 6 | filter:{category:selectedCategory}">
+      dir-paginate="product in products | filter:pricefilter |reverse | itemsPerPage: 6 | filter:{category:selectedCategory} | orderBy:'date' : 'reverse'">
+        <div class="ribbon"><span ng-if="product.discount > 0">SALE</span></div>
       <div class="admin_area">
         <div class="outer d-inline-block" uib-tooltip="Edit" tooltip-trigger="'mouseenter'" tooltip-enable="flag"
           tooltip-is-open="isOpen">
@@ -67,14 +68,17 @@
         </a>
         <span class="badge badge-primary">{{product.category}}</span>
         <p class="card-text">
-          <span ng-hide="product.display == ''">Display: {{product.display}}</span><br>
+          <span ng-hide="product.display == ''">Display: {{product.display}}<br></span>
+          <span ng-hide="product.gpu == ''">GPU: {{product.gpu}}<br></span>
           RAM: {{product.ram}}<br>
           Processor: {{product.processor}}
         </p>
-        <span>{{product.price | currency:'€'}} </span><br>
+        <span ng-if="product.discount > 0"><del>{{product.price | currency: '€'}}</del></span>
+        <span>{{product.price*(100-product.discount)/100 | currency:'€'}} </span><br>
         <ngcart-addtocart template-url="views/addtocart.html" id="{{product.id}}" name="{{product.name}}"
-          price="{{ product.price }}" quantity="1" quantity-max="30" data="item" class="text-white">Add to cart <i
+          price="{{ product.price*(100-product.discount)/100 }}" quantity="1" quantity-max="30" data="item" class="text-white">Add to cart <i
             class="fas fa-cart-plus text-white"></i></ngcart-addtocart>
+
 
         <br>
 
