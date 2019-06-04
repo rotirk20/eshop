@@ -1,9 +1,6 @@
 # eshop
 
-This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
-version 0.16.0.
+## development
 
-## Build & development
-
-Run `npm install` and `bower install` then start app with `grunt serve` for preview.
+If you don't have installed `Node JS` use this link to download `https://nodejs.org/en/`. Run `npm install` and `npm install -g bower` then `bower install`.Use `npm install -g grunt-cli` and start app with `grunt serve` for preview.
 

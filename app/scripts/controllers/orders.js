@@ -20,7 +20,10 @@ angular.module('eshopApp')
                 }
                 var order = firebase.database().ref().child('users').child($scope.userid).child('orders');
                 $scope.orders = $firebaseArray(order);
-
+                order.orderByChild("id").on("child_added", function (snapshot) {
+                    $scope.or = snapshot.val();
+                    console.log($scope.or.length);
+                })
             } else {
                 $scope.loggedIn = false;
                 $scope.admin = false;
