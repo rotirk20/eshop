@@ -19,7 +19,7 @@
 
 <h2 class="text-center mt-5 mb-4">On sale</h2>
 
-<div class="d-flex flex-wrap container justify-content-between">
+<div class="d-flex flex-wrap container justify-content-between onsale">
   <div class="card ml-2 mr-2" ng-repeat="product in products | limitTo:6" ng-show="product.discount > 0" style="width:15rem">
     <div class="ribbon"><span ng-if="product.discount > 0">SALE</span></div>
       <div class="admin_area">

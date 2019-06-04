@@ -290,6 +290,15 @@ img.logo {
   display: block;
   text-align: center;
 }
+.onsale {
+  justify-content: center!important;
+}
+.card {
+  margin:10px 0px;
+}
+.products {
+  justify-content: center;
+}
 }
   
 .print {
@@ -365,5 +374,3 @@ div#myTabContent {
   border-bottom: 3px solid transparent;
   border-top: 3px solid #1e5799;
 }
-
-

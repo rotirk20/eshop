@@ -287,6 +287,15 @@ img.logo {
   display: block;
   text-align: center;
 }
+.onsale {
+  justify-content: center!important;
+}
+.card {
+  margin:10px 0px;
+}
+.products {
+  justify-content: center;
+}
 }
   
 .print {
