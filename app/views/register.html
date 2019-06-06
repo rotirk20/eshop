@@ -13,9 +13,9 @@
     </div>
 
     <div class="form-group">
-        <input ng-model="user.email" type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp"
+        <input ng-model="user.email" type="email" class="form-control" name="email" ng-pattern = '/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i'
+         id="exampleInputEmail1" aria-describedby="emailHelp"
             placeholder="Enter email" ng-required="true">
-            <p ng-hide="!user.email" ng-show="myForm.email.$invalid" class="alert alert-danger">Enter a valid email.</p>
     </div>
     <button type="submit" class="btn btn-primary mb-3" ng-disabled="myForm.$invalid">Register</button>
 </form>

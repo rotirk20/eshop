@@ -6,11 +6,17 @@ angular.module('eshopApp')
             if ($scope.loggedIn && $scope.admin) {
                 var order = firebase.database().ref().child('users');
                 $scope.orders = $firebaseArray(order);
-                console.log($scope.orders);
+                var orders = firebase.database().ref().child('users').child($scope.userid).child('orders');
+                $scope.orders = $firebaseArray(orders);
+               
+                $scope.orders.$loaded().then(function(orders) {
+                    $scope.orderLength = orders.length; // data is loaded here
+                    console.log($scope.orderLength);
+                 });
+
+            
                 order.on("value", function (snapshot) {
                     $scope.messages = snapshot.val();
-                    console.log($scope.orders.length);
-                    console.log($scope.orders);
                     $scope.name = snapshot.val();
                     $scope.$apply();
                 });
@@ -18,6 +24,5 @@ angular.module('eshopApp')
                 $state.go('login');
             }
         }, 300);
-        
+
     })
-    

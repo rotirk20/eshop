@@ -9,8 +9,8 @@
  */
 angular.module('eshopApp')
 .controller('LoginController',
-['$scope', '$firebase', '$firebaseAuth', '$state','$timeout','$location',
-    function ($scope, $firebase, $firebaseAuth, $state, $timeout, $location, $rootScope) {
+['$scope', '$firebase', '$firebaseAuth', '$state','$timeout','$firebaseArray','$interval',
+    function ($scope, $firebase, $firebaseAuth, $state, $timeout, $firebaseArray,$interval,$rootScope) {
         $timeout(function() {
         if ($scope.loggedIn) {
             $state.go('home')
@@ -28,6 +28,15 @@ angular.module('eshopApp')
                     $scope.userUID = firebaseUser.email;
                     $scope.userid = firebaseUser.uid;
                     $scope.displayName = firebaseUser.displayName;
+                    var order = firebase.database().ref().child('users').child($scope.userid).child('orders');
+                    $scope.orders = $firebaseArray(order);
+                   
+                    $interval(function () {
+                        $scope.orders.$loaded().then(function(order) {
+                            $scope.orderLength = order.length; // data is loaded here
+                         });
+                    }, 5000);
+                   
                     $scope.adminUID = 'tarikdedic95@gmail.com';
                     if ($scope.userUID === $scope.adminUID) {
                         $scope.admin = true;
@@ -39,6 +48,11 @@ angular.module('eshopApp')
                     $scope.admin = false;
                 }
             });
+
+
+            window.onbeforeunload = function() {
+                localStorage.removeItem('uid');
+              };
 
 
             $scope.login = function () {
@@ -72,12 +86,13 @@ angular.module('eshopApp')
                     localStorage.removeItem('cart');
                     $scope.$apply(function () {
                         $scope.loggedIn = false;
-                        
                         $state.go('login');
                     });
                 });
             }
         }
     }, 500);
+
+    
 
     }]) //controller

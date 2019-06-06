@@ -9,10 +9,11 @@
     <h5>RAM: {{product.ram}}</h5>
     <h5 ng-show="product.display != ''">Display: {{product.display}}</h5>
     <h5 ng-show="product.gpu != ''">GPU: {{product.gpu}}</h5>
-    <h5>Price: {{product.price | currency: '€'}}</h5>
+    <span ng-if="product.discount > 0"><del>{{product.price | currency: '€'}}</del></span>
+    <span>{{product.price*(100-product.discount)/100 | currency:'€'}} </span><br>
     <span class="badge badge-primary">Category: {{product.category}}</span><br><br>
     <ngcart-addtocart template-url="views/addtocartSingle.html" id="{{product.id}}" name="{{product.name}}"
-      price="{{ product.price }}" quantity="1" quantity-max="30" data="item" class="text-white">Add to cart <i
+      price="{{ product.price*(100-product.discount)/100 }}" quantity="1" quantity-max="30" data="item" class="text-white">Add to cart <i
         class="fas fa-cart-plus text-white"></i></ngcart-addtocart>
   </div>
 </div>

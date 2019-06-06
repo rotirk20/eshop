@@ -375,6 +375,26 @@ div#myTabContent {
   border-top: 3px solid #1e5799;
 }
 
+.btn {
+  cursor: pointer;
+}
+
+.alert.alert-danger.ng-enter {
+  transition: 0.5s linear all;
+  opacity: 0;
+}
+.alert.alert-danger.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+
+.alert.alert-success.ng-enter {
+  transition: 0.5s linear all;
+  opacity: 0;
+}
+.alert.alert-success.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+
 #button {
   display: inline-block;
   background-color: #222;

@@ -3,6 +3,7 @@
         <h3>Order</h3>
         Ordered by: {{order.firstName}} {{order.lastName}} <br>
   <ul ng-repeat="item in order.orders" class="pl-0">
+      <li class="list-group-item">
             <table class="table table-bordered">
                     <thead class="thead-light">
                         <tr>
@@ -20,6 +21,7 @@
                     </tbody>
                 </table>
                 Total: {{item.total | currency}}
+        </li>
   </ul>
 </div>
 </div>

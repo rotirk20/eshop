@@ -28,7 +28,6 @@ angular.module('eshopApp')
         }
 
 
-
         $scope.deleteProduct = function (product) {
             $scope.delete = "Product successfully deleted.";
 

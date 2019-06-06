@@ -8,7 +8,7 @@
  * Controller of the eshopApp
  */
 angular.module('eshopApp')
-    .controller('checkoutController', function ($state,$scope, $stateParams, $firebaseArray, $firebaseObject, firebase,ngCart,$timeout) {
+    .controller('checkoutController', function ($state,$scope, $stateParams, $firebaseArray, $firebaseObject, firebase,ngCart,$timeout,$window) {
         var order = ngCart.getCart().items;
         $scope.total = ngCart.totalCost();
         $scope.loginCheck = localStorage.getItem('uid');
@@ -30,7 +30,6 @@ angular.module('eshopApp')
             $timeout(function() {
                 $state.go('orders');
              }, 3000);
-
           };
         } 
 

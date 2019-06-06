@@ -30,7 +30,7 @@
     <![endif]-->
 
   <!-- Add your site or application content here -->
-  <div class="header" ng-controller="currencyController">
+  <div class="header">
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
       <div class="container">
         <a class="navbar-brand" ui-sref="home"><img class="logo"
@@ -95,7 +95,7 @@
                 ui-sref="addproduct">Add product</a>
               <a class="dropdown-item" ng-if="userUID === adminUID" ui-sref="category">Categories</a>
               <a class="dropdown-item" ui-sref="products">Products</a>
-              <a class="dropdown-item" ui-sref="orders" ng-controller="orderController">Orders
+              <a class="dropdown-item" ui-sref="orders">Orders <span class="badge badge-primary orderNumber" ng-model="orderNumber" ng-controller="orderController">{{orderLength}}</span></a>
               <a class="dropdown-item" ng-if="userUID === adminUID" ui-sref="allorders">All orders</a>
               <div class="dropdown-divider m-0"></div>
               <a href="" class="dropdown-item btn-danger logout text-white" ng-click="signOut()">Log out <i
