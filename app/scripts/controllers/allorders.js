@@ -21,7 +21,7 @@ angular.module('eshopApp')
                     $scope.$apply();
                 });
             } else {
-                $state.go('login');
+                $state.go('home');
             }
         }, 300);
 

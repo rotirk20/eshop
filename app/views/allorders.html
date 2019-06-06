@@ -1,7 +1,8 @@
 <div class="mt-5 pt-5 container">
 <div ng-repeat="order in messages" class="container" ng-hide="!order.orders">
-        <h3>Order</h3>
-        Ordered by: {{order.firstName}} {{order.lastName}} <br>
+        <h3> <i class="fas fa-truck"></i> Order <span>by {{order.firstName}} {{order.lastName}} </span> </h3>
+        <i class="fas fa-address-book"></i> {{order.phone}} || {{order.email}}<br>
+        <i class="fas fa-map-marked-alt"></i> {{order.country}}, {{order.city}}, {{order.address}}
   <ul ng-repeat="item in order.orders" class="pl-0">
       <li class="list-group-item">
             <table class="table table-bordered">

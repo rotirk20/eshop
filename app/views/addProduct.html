@@ -6,6 +6,7 @@
         <div class="form-group">
             <input type="text" class="form-control" name="name" ng-minlength='5' id="name" ng-model="product.name"
                 placeholder="Product name..." required>
+              
             <div ng-messages="addProducts.name.$error" role="alert">
                 <div class="alert alert-danger mt-2" ng-message="minlength">Name of the product must contain minimal 5
                     words.</div>
@@ -21,18 +22,18 @@
                 <h3>Product specifications</h3>
             </label>
             <div class="input-group">
-                <input type="text" class="form-control" ng-model="product.ram" placeholder="RAM">
+                <input type="text" class="form-control" ng-model="product.ram" placeholder="RAM" required>
             </div>
             <div class="input-group">
-                <input type="text" class="form-control" ng-model="product.processor" placeholder="Processor">
+                <input type="text" class="form-control" ng-model="product.processor" placeholder="Processor" required>
             </div>
             <div class="input-group">
                 <input type="text" class="form-control" name="display" id="display" ng-model="product.display"
-                    placeholder="Display size">
+                    placeholder="Display size" required>
             </div>
             <div class="input-group">
                 <input type="text" class="form-control" name="gpu" id="gpu" ng-model="product.gpu"
-                    placeholder="Graphic card">
+                    placeholder="Graphic card" required>
             </div>
         </div>
         <div class="form-group">

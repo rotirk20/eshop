@@ -67,8 +67,9 @@
                 list="names" placeholder="Search products...">
               <datalist ng-click="click()" ng-show="show||mouseover" ng-mouseover="mouseover=true"
                 ng-mouseleave="mouseover=false" id="names" class="form-control pretraga" ng-model="name">
-
+<h5 class="text-center col-md-12 d-block" ng-hide="products.length">No products.</h5>
                 <div ng-repeat="option in products | filter:search | limitTo:3" value="{{option.name}}">
+                    
                   <a class="productSearchName d-flex" ui-sref="product({id:option.id})">
                     <h5 class="col-md-6 p-0 no-text-underline m-0">{{option.name}}</h5>
                     <div class="search-img text-center col-md-6 pl-0 pr-0" style="background:url('{{option.imageurl}}')">

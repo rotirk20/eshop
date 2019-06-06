@@ -35,7 +35,7 @@ angular.module('eshopApp')
                         $scope.orders.$loaded().then(function(order) {
                             $scope.orderLength = order.length; // data is loaded here
                          });
-                    }, 5000);
+                    }, 1000);
                    
                     $scope.adminUID = 'tarikdedic95@gmail.com';
                     if ($scope.userUID === $scope.adminUID) {
@@ -86,7 +86,7 @@ angular.module('eshopApp')
                     localStorage.removeItem('cart');
                     $scope.$apply(function () {
                         $scope.loggedIn = false;
-                        $state.go('login');
+                        $state.go('home');
                     });
                 });
             }

@@ -33,7 +33,7 @@ angular.module('eshopApp')
             popupWin.document.close();
           } 
         } else {
-            $state.go('login');
+            $state.go('home');
         }
     },300);
     });
