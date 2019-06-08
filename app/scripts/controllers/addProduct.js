@@ -43,11 +43,11 @@ angular.module('eshopApp')
                     discount: parseInt($scope.product.discount),
                     category: $scope.product.category.category,
                     imageurl: imageUrl
-                }).then(function (productsRef) {
+                })
                     $scope.msg = "Product added";
                     $scope.product.name = "";
                     $scope.product.ram = "",
-                        $scope.product.processor = "";
+                    $scope.product.processor = "";
                     $scope.product.display = "";
                     $scope.product.price = "";
                     $scope.product.discount = "";
@@ -59,9 +59,7 @@ angular.module('eshopApp')
                     $timeout(function () {
                         $state.reload();
                     }, 1500);
-                }).catch(function (error) {
-                    console.error(error);
-                });
+                
             }
             // Add category
             $scope.addCategory = function () {

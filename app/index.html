@@ -42,7 +42,7 @@
             <span class="hamburger-inner"></span>
           </span>
         </button>
-        
+
         <div class="collapse navbar-collapse" id="navbarColor03">
           <ul class="navbar-nav primary ml-auto mr-1">
             <li class="nav-item">
@@ -67,19 +67,20 @@
                 list="names" placeholder="Search products...">
               <datalist ng-click="click()" ng-show="show||mouseover" ng-mouseover="mouseover=true"
                 ng-mouseleave="mouseover=false" id="names" class="form-control pretraga" ng-model="name">
-<h5 class="text-center col-md-12 d-block" ng-hide="products.length">No products.</h5>
+                <h5 class="text-center col-md-12 d-block" ng-hide="products.length">No products.</h5>
                 <div ng-repeat="option in products | filter:search | limitTo:3" value="{{option.name}}">
-                    
+
                   <a class="productSearchName d-flex" ui-sref="product({id:option.id})">
                     <h5 class="col-md-6 p-0 no-text-underline m-0">{{option.name}}</h5>
-                    <div class="search-img text-center col-md-6 pl-0 pr-0" style="background:url('{{option.imageurl}}')">
+                    <div class="search-img text-center col-md-6 pl-0 pr-0"
+                      style="background:url('{{option.imageurl}}')">
                     </div>
                   </a>
               </datalist>
             </form>
           </div>
         </div>
-        <a ui-sref="summary" >
+        <a ui-sref="summary">
           <ngcart-summary template-url="views/summary.html"></ngcart-summary>
         </a>
 
@@ -96,7 +97,8 @@
                 ui-sref="addproduct">Add product</a>
               <a class="dropdown-item" ng-if="userUID === adminUID" ui-sref="category">Categories</a>
               <a class="dropdown-item" ui-sref="products">Products</a>
-              <a class="dropdown-item" ui-sref="orders">Orders <span class="badge badge-primary orderNumber" ng-model="orderNumber" ng-controller="orderController">{{orderLength}}</span></a>
+              <a class="dropdown-item" ui-sref="orders">Orders <span class="badge badge-primary orderNumber"
+                  ng-model="orderNumber" ng-controller="orderController">{{orderLength}}</span></a>
               <a class="dropdown-item" ng-if="userUID === adminUID" ui-sref="allorders">All orders</a>
               <div class="dropdown-divider m-0"></div>
               <a href="" class="dropdown-item btn-danger logout text-white" ng-click="signOut()">Log out <i
@@ -109,7 +111,7 @@
   </div>
 
   <ui-view></ui-view>
-	<a id="button"><i class="fas fa-angle-double-up text-white"></i></a>
+  <a id="button"><i class="fas fa-angle-double-up text-white"></i></a>
   <div class="footer bg-dark pt-3 pb-3 mt-5">
     <div class="container">
       <p class="text-center m-0">Ecommerce shop | Tarik Dedić</p>
@@ -174,7 +176,7 @@
   <script src="scripts/controllers/orders.js"></script>
   <script src="scripts/controllers/allorders.js"></script>
   <script src="scripts/controllers/main.js"></script>
-  
+
 
 
   <!-- endbuild -->

@@ -2,7 +2,7 @@
     <div class="msg alert alert-success" ng-show="msg">
         <h3>{{msg}}</h3>
     </div>
-    <form name="addProducts" ng-submit="saveData()">
+    <form name="addProducts" novalidate ng-submit="saveData()">
         <div class="form-group">
             <input type="text" class="form-control" name="name" ng-minlength='5' id="name" ng-model="product.name"
                 placeholder="Product name..." required>
@@ -29,11 +29,11 @@
             </div>
             <div class="input-group">
                 <input type="text" class="form-control" name="display" id="display" ng-model="product.display"
-                    placeholder="Display size" required>
+                    placeholder="Display size">
             </div>
             <div class="input-group">
                 <input type="text" class="form-control" name="gpu" id="gpu" ng-model="product.gpu"
-                    placeholder="Graphic card" required>
+                    placeholder="Graphic card">
             </div>
         </div>
         <div class="form-group">

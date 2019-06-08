@@ -4,8 +4,7 @@
         Your cart is empty.Go back to shop!<br>
         <a ui-sref="products">Shop</a>
     </div>
-
-
+    
     <div class="table-responsive container mt-5 pt-5" ng-show="ngCart.getTotalItems() > 0"
         ng-controller="LoginController">
 
@@ -61,11 +60,13 @@
     </div>
     <div class="container d-flex flex-wrap" ng-controller="checkoutController">
         <div class="col-md-6">
-            <button class="btn btn-primary" ng-click="buy()" ng-hide="total == 0 || !loginCheck">Checkout</button>
+            <button class="btn btn-primary" ng-click="buy()" id="checkout"
+                ng-hide="total == 0 || !loginCheck">Checkout</button>
             <a ui-sref="register" class="btn btn-success" ng-show="!loginCheck">Register to order</a>
         </div>
         <div class="col-md-6">
-            <button class="btn btn-danger float-right" ng-click="ngCart.empty()" ng-hide="ngCart.getTotalItems() === 0">Clear
+            <button class="btn btn-danger float-right" ng-click="ngCart.empty()"
+                ng-hide="ngCart.getTotalItems() === 0">Clear
                 cart</button>
         </div>
     </div>
@@ -79,3 +80,4 @@
         color: #aaa;
     }
 </style>
+<script src="scripts/scripts.js"></script>

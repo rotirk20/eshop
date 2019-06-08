@@ -5,6 +5,7 @@
         <i class="fas fa-map-marked-alt"></i> {{order.country}}, {{order.city}}, {{order.address}}
   <ul ng-repeat="item in order.orders" class="pl-0">
       <li class="list-group-item">
+            <i class="far fa-calendar-check"></i> {{item.date | date:'dd.MM.yyyy in HH:mm'}}
             <table class="table table-bordered">
                     <thead class="thead-light">
                         <tr>

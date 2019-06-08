@@ -375,6 +375,39 @@ div#myTabContent {
   border-top: 3px solid #1e5799;
 }
 
+.circle {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px; 
+  border:3px solid #f3f3f3;
+  transition:0.3s all;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 24px;
+  color: #FFF;
+  font-weight: 600;
+}
+
+.trust {
+  background-color:#999;
+}
+.selection {
+  background-color: #ee8a73;
+}
+.exp {
+  background-color: #6bb9cd;
+}
+.service {
+  background-color: #b8cc6d;
+}
+
+.circle:hover {
+  box-shadow: 0px 8px 30px -20px #222;
+  cursor:pointer;
+  transition:0.3s all;
+}
+
 .btn {
   cursor: pointer;
 }

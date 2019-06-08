@@ -23,7 +23,6 @@ angular.module('eshopApp')
                 $timeout(function() {
                     $scope.msg3 = false;
                  }, 3000);
-                $scope.msg3 = "Product successfully updated.";
                 snapshot.ref.update({
                     name: $scope.product.name,
                     ram: $scope.product.ram,
