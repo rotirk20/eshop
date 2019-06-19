@@ -1,4 +1,4 @@
-# eshop
+# AngularJS eshop
 
 ## development
 
